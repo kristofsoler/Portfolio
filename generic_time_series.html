@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Generic - Phantom by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+							
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1>Time Series Prediction of Disease Outbreak Among Farmed Salmon in Norway, using SARIMAX and Exogenous Variables</h1>
+							<img src="images_timeseries/Picture 3.jpg" alt="Model Architecture" style="display: block; margin: auto; width: 600px; height: auto;" /></span>
+							<p style="text-align: center; font-size: 16px; color: #333;">Above figure illustrates the increase in salmon farming losses across various counties in Norway over time. The overall upward trend in losses may be attributed to several factors. One significant factor could be the increase in farming density, which often exacerbates the spread of diseases and parasites such as sea lice. </p>
+							<p>Introduction</p>
+							<p>This project explores predictive modeling techniques for identifying disease outbreaks in farmed salmon within Norway, focusing on time series methods. It contrasts the effectiveness of traditional SARIMAX models with Temporal Convolutional Networks (TCNs), emphasizing the integration of exogenous variables and the complexities of capturing non-linear patterns in disease outbreak data.</p>
+							<p>Dataset</p>
+							<p>The primary datasets were retrieved from the Norwegian Food Safety Authority (Norwegian Food Safety Authority, 2024). The API allows selection of the  2 main datasets proposed in this study: Salmon diseases, Salmon lice. The datasets are recorded from 2012 to 2019 with approximately 75000 disease events and the salmon lice dataset has approximately 750000 rows. 2nd dataset (salmon Lice) tracks weekly records of salmon lice infestation levels and environmental conditions across various salmon farms in Norway. This project involved integrating multiple datasets in different formats to create a comprehensive framework for predicting disease outbreaks in farmed salmon. Additionally, geospatial data in formats like GEOjson The data sources ranged from outbreak records in CSV files to environmental metrics stored in structured databases and farm-specific metrics in Excel files. A key challenge was harmonizing these diverse formats and aligning them temporally, as the data were collected at varying frequencies (e.g., daily, weekly, and monthly). Temporal resampling and interpolation were employed to create a unified timeline, while geospatial data were transformed into tabular formats to integrate with time series models. The variability in scales and units across datasets required robust scaling and normalization techniques to ensure consistency. Missing data were addressed using imputation methods, while dimensionality reduction helped manage the high dimensionality introduced by numerous exogenous variables. The resulting integrated dataset enabled the inclusion of critical factors like temperature, lice counts, and farm density into the modelling process, using both SARIMAX and TCN models. This comprehensive data preparation facilitated a deeper exploration of temporal and spatial patterns, ultimately improving the predictive accuracy of disease outbreak models and providing a goodfoundation for model comparison and evaluation.</p>
+							<p>Objectives </p>
+							<p><ul>
+								<li>Evaluate SARIMAX: Analyze the capability of SARIMAX in integrating exogenous variables for disease prediction.</li>
+								<li>Explore Alternatives: Test the hypothesis that TCNs provide a better framework for this task, given their ability to handle non-linear dependencies and long-term patterns.</li>
+								<li>Benchmark Accuracy: Compare model performance using metrics like RMSE and R-squared, with insights into each model's predictive strengths and limitations.</li>
+							  </ul>
+								</p>
+								<div style="text-align: center;">
+									<img src="images_timeseries/Picture 2.jpg" alt="Image 1" style="display: inline-block; margin: 5px; width: 500px; height: auto;" />
+									<img src="images_timeseries/Picture 4.jpg" alt="Image 2" style="display: inline-block; margin: 5px; width: 500px; height: auto;" />
+																	</div>
+																	<p style="text-align: center; font-size: 16px; color: #333;"> Above left figure illustrates the lice counts in various regions of Norway over time. Initially, there is a significant spike in lice counts in Vestland during the years 2012 and 2013.Throughout the observed period, there are clear seasonal trends, with lice counts fluctuating annually. Despite these seasonal variations, the overall lice counts appear relatively stable over time,
+																		 indicating that while there are periodic increases and decreases, the long-term average lice count remains consistent. The above right figure shows the outbreak count over time for each area in Norway</p>
+							<p>Methodology</p>
+							<p><ol>
+								<li><strong>Data Analysis & Preprocessing:</strong>
+								  <ul>
+									<li>Utilized data from Norwegian salmon farms, focusing on disease outbreak counts, sea temperature, lice counts, and outbreak duration.</li>
+									<li>Performed descriptive statistics and correlation analysis to understand relationships among variables.</li>
+								  </ul>
+								</li>
+								<li><strong>SARIMAX Modeling:</strong>
+								  <ul>
+									<li>Constructed seasonal ARIMA models incorporating exogenous variables (SARIMAX).</li>
+									<li>Evaluated model residuals for autocorrelation, skewness, and kurtosis to identify areas of improvement.</li>
+								  </ul>
+								</li>
+								<li><strong>Temporal Convolutional Networks (TCN):</strong>
+								  <ul>
+									<li>Implemented a TCN using Keras, with dilated convolutions to capture long-term dependencies.</li>
+									<li>Trained and validated the model with a sequence-based approach using TimeSeriesGenerator for input transformation.</li>
+								  </ul>
+								</li>
+								<li><strong>Performance Metrics:</strong>
+								  <ul>
+									<li>Benchmarked both models using metrics such as RMSE and R-squared.</li>
+									<li>Visualized predictions to evaluate alignment with actual data and detect under/overfitting.</li>
+								  </ul>
+								</li>
+							  </ol>
+								</p>
+								<div style="text-align: center;">
+									<img src="images_timeseries/Picture 1.jpg" alt="Image 1" style="display: inline-block; margin: 5px; width: 500px; height: auto;" />
+									
+									<img src="images_timeseries/Picture 5.jpg" alt="Image 2" style="display: inline-block; margin: 5px; width: 500px; height: auto;" />
+								</div>
+								<p style="text-align: center; font-size: 16px; color: #333;"> Top left figure shows Learning Curves for The training and validation data,
+									Top right figure shows the Test vs Predicted Data for Disease Outbreak among Salmon in Vestland </p>
+							<p>The project reveals the limitations of SARIMAX for modeling complex, multi-dimensional time series data in the context of disease outbreaks among salmon. Temporal Convolutional Networks emerged as a more effective approach, demonstrating improved accuracy and robustness in handling non-linear relationships and long-term dependencies.</p>
+							<p></p>
+							<p></p>
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							
+							<section>
+								<h2>Github Repo for this project</h2>
+								<ul class="icons">
+				
+									<li><a href="https://github.com/kristofsoler/time_series" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+							
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

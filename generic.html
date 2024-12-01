@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Generic - Phantom by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1>Project Title: Echocardiography Anomaly Detection Using ConvLSTM Beta Variational Autoencoder (VAE)</h1>
+							
+							<p>Description:<p>
+							<p>This project focuses on detecting anomalies in echocardiography videos using a Convolutional LSTM Variational Autoencoder (ConvLSTM VAE). The proposed ConvLSTM VAE architecture combines the strengths of convolutional layers for spatial feature extraction and LSTM layers for capturing temporal dynamics.
+								</p>
+							</p>Task : Anomaly Detection and visualization in Echocardiography,
+								The model uses one class Learning, just trained on normal heart function data and detects deviations as potential abnormalities. 
+								Second point was to visualize the localized areas of the anomaly , which should correspond to a pathology .</p>
+							<img src="images/model_architecture.jpg" alt="Model Architecture" style="display: block; margin: auto; width: 600px; height: auto;" /></span>
+								<p>Key Components:</p>
+							<p>1.	Encoder:
+								The encoder processes echocardiographic sequences, compressing them into a low-dimensional latent representation. It uses convolutional layers to capture spatial details (e.g., heart chamber boundaries and textures) and LSTM layers to model temporal variations (e.g., rhythmic heart motion). The output of the encoder represents the mean and variance of a latent Gaussian distribution.
+							<p>2.	Sampling and Latent Space:
+								The encoder employs the reparameterization trick to sample latent variables z from a learned Gaussian distribution. This approach ensures smooth latent space representations while enabling gradient-based optimization. The latent space is regularized to balance reconstruction quality and anomaly detection sensitivity (disentanglement) using a beta value .
+								<p>
+							<p>	3.	Decoder:
+								The decoder reconstructs echocardiographic sequences from the latent variables z. By using LSTM layers for temporal modeling and deconvolutional layers for spatial reconstruction, the decoder aims to produce high-fidelity outputs resembling the original input.
+								</p>
+							<p>Ground truth labels were used to separate and adjust reconstruction errors for each class in the testing set. A threshold was applied to classify errors into these categories, and the performance was evaluated against the true labels.
+
+								The model performed well overall, with good precision (0.76–0.87) and recall (0.72–0.90).
+								It identifies normal echoes more effectively (higher recall), while being slightly less effective at classifying abnormal instances (lower recall).
+								
+								Overall, the ROC curve suggests that the model is effective at differentiating "Normal" and "Abnormal" instances.  
+								</p>
+								<div style="text-align: center;">
+									<img src="images/ROC curve.jpg" alt="Image 1" style="display: inline-block; margin: 5px; width: 300px; height: auto;" />
+									<img src="images/confusion_matrix.jpg" alt="Image 2" style="display: inline-block; margin: 5px; width: 300px; height: auto;" />
+									<img src="images/classifcation report.jpg" alt="Image 2" style="display: inline-block; margin: 5px; width: 300px; height: auto;" />
+								</div>
+							</p>Model Sequence Generation and Reconstruction Error for Pathology Detection</p>	
+							</p>
+								The ConvLSTM VAE can generate new echocardiographic sequences by sampling points from the learned latent space. These sampled points are passed through the decoder to produce synthetic sequences. By observing the quality and coherence of these generated sequences, the training quality can be evaluated. High-quality generations indicate that the latent space captures meaningful and smooth representations of normal cardiac motion.
+							
+								For pathology detection, the reconstruction error is computed as the difference between the input sequence and its reconstruction. In normal echocardiographic clips, the model's reconstruction closely matches the input, resulting in low reconstruction errors. However, for clips containing anomalies, the reconstruction error increases significantly because the model, trained predominantly on normal data, struggles to represent pathological patterns accurately. This reconstruction error serves as a key indicator of potential pathology in new clips.
+							</p>
+							<img src="images/Untitled 7.jpg" alt="Model Architecture" style="display: block; margin: auto; width: 800px; height: auto;" /></span>
+							<img src="images/abn.jpg" alt="Model Architecture" style="display: block; margin: auto; width: 400px; height: auto;" /></span>
+							<img src="images/abn2.jpg" alt="Model Architecture" style="display: block; margin: auto; width: 400px; height: auto;" /></span>
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							
+							<section>
+								<h2>Github Repo for the project</h2>
+								<ul class="icons">
+								
+									<li><a href="https://github.com/kristofsoler/Anomoly_detection_echo" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+									
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
