@@ -1,0 +1,153 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Generic - Phantom by HTML5 UP</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+						
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Home</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1>Deep Learning for ECG Classification</h1>
+							<div style="text-align: center;">
+								<img src="images ecg/af.jpg" alt="Image 1" style="width: 500px; height: auto; image-rendering: auto;">
+								<img src="images ecg/sinus.jpg" alt="Image 1" style="width: 500px; height: auto; image-rendering: auto;">
+								<p style="font-size: 16px; color: #333;">above left shows an ECG with atrial fibrillation, Above right is normal sinus rhythm</p>
+							  </div>
+							<p><strong>Introduction</strong></p>
+							<p>This project focuses on building a Convolutional Neural Network (CNN) to classify electrocardiogram (ECG) signals into two categories: Sinus Rhythm and Atrial Fibrillation. The model is trained, validated, and tested using real ECG data, leveraging modern deep learning techniques to achieve high accuracy and interpretability.</p>
+							<p><strong>Dataset</strong></p>
+							<p>The dataset utilized in this case study, sourced from Kaggle’s PTB-XL Atrial Fibrillation Detection Dataset (2000), is a comprehensive collection of electrocardiogram (ECG) data designed for time-series analysis. The dataset comprises two components: an information dataframe and a 3D array of ECG signals.
+							<p>
+The ECG data includes approximately 6,428 unique ECG strips, representing distinct patients. Each strip is sampled at 150 Hz over a duration of 10 seconds, resulting in around 5,000 integer samples per patient. Altogether, this equates to a dataset of over 32 million rows of time-series data.
+
+The information dataframe provides metadata and classification labels for each ECG strip, categorizing the signals into normal rhythm, atrial fibrillation, and other arrhythmias
+							<p><strong>Data Cleaning</strong></p>
+							<p>To prepare the dataset for analysis, a series of preprocessing steps were performed to optimize its structure and reduce its dimensionality while preserving relevant information for atrial fibrillation detection.
+
+								Unnecessary columns were removed from the information dataframe, retaining only those related to rhythm labels and ECG signal quality. The ECG signal data, initially a 3D array containing the number of ECG recordings, total samples per recording, and 12 standard ECG leads, was reshaped into a 2D array. This restructuring enabled compatibility with algorithms requiring 2D inputs.
+								</p>
+							</p>Given the dataset's substantial size (32,140,000 rows), data reduction techniques were applied. The number of samples per ECG was reduced from 5,000 to 2,000, focusing on the rhythm rather than axis orientation, which is less critical for atrial fibrillation diagnosis. Additionally, the number of leads analyzed was reduced from 12 to 4, further optimizing the dataset. The reshaped ECG data was then merged with the information dataframe, resulting in a consolidated dataset with columns for rhythm labels, case IDs, and ECG quality indicators.</p>
+								</p>Further dimensionality reduction involved filtering out noise and irrelevant cases. Columns indicating noise types (e.g., baseline drift, electrode issues, or artefacts) were examined, and cases with pacemakers were excluded. Pacemakers replace irregular atrial fibrillation rhythms with regular paced rhythms, which could confound the learning process.
+							</p><strong>Methods</strong></p>
+							</p>The Convolutional Neural Network (CNN) was designed using the Keras Sequential API to classify ECG signals into two categories:
+							 Sinus Rhythm and Atrial Fibrillation. The architecture includes multiple convolutional layers with filters of increasing size (32, 64, 128),
+							  kernel size of 5, and ReLU activation to extract meaningful features from the time-series ECG data. 
+							  Each convolutional layer is followed by Batch Normalization and MaxPooling layers (pool size: 1x8) to stabilize learning and reduce dimensionality.
+							</p>  
+							</p>
+							The Flatten layer prepares the features for a dense output layer with a softmax activation to output probabilities for the two classes.
+							 The model employs the Nadam optimizer with an initial learning rate and an exponential decay schedule to fine-tune the learning process over epochs. 
+							 A categorical crossentropy loss function is used for classification.
+							
+							To enhance training efficiency and prevent overfitting, the model includes Early Stopping (monitoring validation accuracy) 
+							and a Learning Rate Scheduler to adapt the learning rate dynamically.</p>
+							
+							</p><strong>Hyperparamater tuning</strong></p>
+							</p>Hyperparameter tuning focused on optimizing the CNN architecture for classifying ECG signals. The process involved adjusting key parameters, including the number of filters per convolutional layer (32, 64, 128), initial learning rate (0.10), and learning rate decay factor (tested at 3). The Nadam optimizer and categorical crossentropy loss function were used to ensure efficient training for the multi-class classification task.
+
+							The tuning process iterated through decay rates, training the model with early stopping and a learning rate scheduler to balance convergence speed and stability. Performance metrics, including maximum training and validation accuracies, were recorded for each configuration. The best model demonstrated robust accuracy, reflecting effective hyperparameter selection for detecting atrial fibrillation.
+							
+							
+							
+							
+							
+							
+							</p>
+							
+							
+							</p>
+							<div style="display: inline-block; margin: 5px;">
+										  <img src="images ecg/learning_curves.jpg" alt="Image 1" style="width: 600px; height: auto; image-rendering: auto;">
+										  <img src="images ecg/roc.jpg" alt="Image 2" style="width: 400px; height: auto; image-rendering: auto;">
+										  <p style="font-size: 16px; color: #333;">Above figure shows the learning curves for the CNN, and the ROC from testing </p>
+										</div>
+							</p>
+							<p><strong>Key Findings</strong></p>
+							<p>The Convolutional Neural Network (CNN) achieved excellent performance in classifying ECG signals into Sinus Rhythm and Atrial Fibrillation. On the unseen test dataset, the model demonstrated a test accuracy of 96.1% with a test loss of 0.1299, indicating solid predictive capabilities.
+
+								The classification report highlighted high precision, recall, and F1-scores for both classes, with:
+							<p>
+								<ul> 
+									<li>Sinus Rhythm: Precision = 98%, Recall = 94%, F1-score = 96%</li>
+									<li>Atrial Fibrillation: Precision = 95%, Recall = 98%, F1-score = 96%</li>
+										
+								</ul>
+								<p>
+									<div style="text-align: center;">
+										
+										<img src="images ecg/confm.jpg" alt="Image 1" style="display: inline-block; margin: 5px; width: 500px; height: auto;" />
+										<img src="images ecg/Screenshot 2024-12-01 at 21.46.04.jpg" alt="Image 2" style="display: inline-block; margin: 5px; width: 500px; height: auto;" />
+										<div style="display: inline-block; margin: 5px;">
+										  <p style="font-size: 16px; color: #333;">Above figures show the confusion matrix and the classification report for the project</p>
+										</div>
+									  </div>
+										<p>The project successfully developed a robust Convolutional Neural Network (CNN) for classifying ECG signals into Sinus Rhythm and Atrial Fibrillation. With optimized preprocessing, hyperparameter tuning, and an effective architecture, the model achieved a high test accuracy of 96.1% and demonstrated strong generalization</p>
+										</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							
+							<section>
+								<h2>Github repo for this project</h2>
+								<ul class="icons">
+									
+									<li><a href="https://github.com/kristofsoler/ecg_classification" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+								
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>&copy; Untitled. All rights reserved</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
